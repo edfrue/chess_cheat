@@ -121,14 +121,6 @@ class chessCheat(QWidget):
         
     def on_show_message_box(self, id, severity, title, text):
         self.responses[str(id)] = getattr(QtGui.QMessageBox, str(severity))(self, title, text)
-
-        
-
-# app = QApplication(sys.argv)
-# cc = chessCheat(r'C:\Users\edwin\Documents\CV\chess_cheat\stockfish_9_x64.exe')
-# sys.exit(app.exec_())
-
-
         
 if __name__ == "__main__":
     # execute only if run as a script
