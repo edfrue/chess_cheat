@@ -351,3 +351,79 @@ class boardParser:
     def plotMasks(self):
         for p in self.parsedMasks:
             cv2.imshow(str(id(p)), p.astype('uint8')*255)
+##
+# img = cv2.imread(r'C:\Users\edwin\Documents\CV\chess_cheat\chess2.png')
+# bp = boardParser()
+# bp.learnPieces(img)
+# bp.plotPieces()
+# ##
+# square = bp.squares[0]
+# white = np.ones_like(bp.squares[2])*bp.squares[2].mean()
+# black = np.ones_like(bp.squares[1])*bp.squares[1].mean()
+# square = np.abs(bp.squares[0] - white)
+# 
+# 
+# ret, thresh = cv2.threshold(square.astype('uint8'), 50, 255, 0)
+# _, contours, _ = cv2.findContours(np.invert(square.astype('uint8')), cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
+# mask = np.zeros_like(square)
+# c = max(contours, key = np.shape)
+# cv2.drawContours(mask,[c],0,255,-1)
+# out = np.zeros_like(mask)
+# out[mask == 255] = square[mask == 255]
+# cv2.imshow('p',out)
+# 
+# ##
+# i=-7
+# square = cc.bp.squares[i]
+# # white = np.ones_like(bp.squares[16])*bp.squares[16].mean()
+# # black = np.ones_like(bp.squares[17])*bp.squares[17].mean()
+# squareDiff = np.ones_like(square)*255
+# squareDiff[np.abs(square.astype('int32') - cc.bp.backGroundColors[i].astype('int32')) < 30] = 0
+# kernel = np.ones((1,1),np.uint8)
+# squareDiff = cv2.morphologyEx(squareDiff,cv2.MORPH_OPEN,kernel)
+# _, contours, _ = cv2.findContours(squareDiff.astype('uint8'), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+# mask = np.zeros_like(square)
+# c = max(contours, key = np.size)
+# cv2.drawContours(mask,[c],0,255,-1)
+# out = np.zeros_like(mask)
+# out[mask == 255] = square[mask == 255]
+# out[squareDiff < 5] = 0
+# mask[squareDiff < 5] = 0
+# cv2.imshow('b',mask.astype('uint8'))
+# ##
+# for i in range(8):
+#     cv2.imshow('%d'%i, cc.bp.maskPiece(bp.squares[i], cc.bp.backGroundColors[i]))
+# ##
+# i = -8
+# cv2.imshow('%d'%i, bp.maskPiece(bp.squares[i], white))
+# cv2.imshow('%d'%i, bp.squares[i])
+# ##
+# img = cv2.imread(r'C:\Users\edwin\Documents\CV\chess_cheat\chess1.png')
+# gray = cv2.cvtColor(img,cv2.COLOR_RGB2GRAY)
+# filterOut = boardParser.findChessBoard(gray, 22, 50, 30)
+# filterOut1 = boardParser.findChessBoard(gray, 5, 20, 30)
+# filterOut[filterOut1 == 0] = 0
+# # filterOut = cv2.erode(filterOut,np.ones((1,1),np.uint8),iterations = 1)
+# cv2.imshow('T', filterOut)
+# ##
+# linesHorz, linesVert = boardParser.findHorzVertLines(filterOut, 1, 5, 3)
+# linesHorz, linesVert = boardParser.mostFrequentDist(linesHorz, linesVert, 30, int(min(gray.shape)/5))
+# grid = img.copy()
+# #Plot Horz Lines
+# for y in linesHorz:
+#     cv2.line(grid,(0,y),(grid.shape[1], y),(0,255,0),1)
+# #Plot Vert Lines
+# for x in linesVert:
+#     cv2.line(grid,(x,0),(x,grid.shape[0]),(0,255,0),1)
+# cv2.imshow('Grid',grid)
+# ##
+# kSize = 2
+# sigma = 2
+# gauss = cv2.getGaussianKernel(2*kSize, sigma)
+# gauss = np.outer(gauss, gauss)
+# kernelUpperLeft = gauss
+# kernelUpperLeft[kSize:, :] = 0
+# kernelUpperLeft[:, kSize:] = 0
+# kernelLowerLeft = kernelUpperLeft[::-1,:]
+# kernelUpperRight = kernelUpperLeft[:, ::-1]
+# kernelLowerRight = kernelUpperLeft[::-1, ::-1]
